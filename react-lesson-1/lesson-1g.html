@@ -2,11 +2,14 @@
 <html>
 
 <head>
-    <title>React Lesson 1f</title>
+    <title>React Lesson 1g</title>
 </head>
 
 <body>
     <div class="js-container"></div>
+
+    <!-- Import DayJS -->
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
 
     <!-- I use supersimpledev react to use the same version of react in his course. -->
     <!-- In real projects. i will use the latest version of real react -->
@@ -16,6 +19,7 @@
     <!-- Babel will translate our JSX into regular JavaScript -->
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
+        /*
         const socksPrice = 10;
         const tshirtPrice = 8;
 
@@ -34,8 +38,11 @@
         );
 
         console.log(productCost);
+        */
+
+        console.log(dayjs().format('MMMM D'));
         const container = document.querySelector('.js-container');
-        ReactDOM.createRoot(container).render(div);
+        ReactDOM.createRoot(container).render();
     </script>
 </body>
 
