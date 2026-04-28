@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>React Lesson 2a</title>
+</head>
+
+<body>
+    <div class="js-container"></div>
+
+    <!-- I use supersimpledev react to use the same version of react in his course. -->
+    <!-- In real projects. i will use the latest version of real react -->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <!-- Babel will translate our JSX into regular JavaScript -->
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+        function App() {
+            return (
+                <>
+                    <Product name="Cotton Socks" cost="10.90" discountPrice="8.90" image="cotton-socks.png" />
+                    <Product name="Tennis balls" cost="6.00" image="tennis-balls.png" />
+                    <Product name="Plain T-Shirt" cost="7.99" image="plain-t-shirt.png" />
+                </>
+            );
+        }
+
+        function Product(productInfo) {
+            const { name, cost, discountPrice, image } = productInfo;
+
+            // In the course. i already figured it out that i will use the ternary operator.
+            // so in this activity. it is better to use the variable and store the ternary 
+            // operator in it. and then use the variable in the return statement.
+            const price = !discountPrice ?
+                <p><del>Price: ${cost}</del></p>
+                :
+                <p>Price: ${cost}</p>;
+
+            const discount = discountPrice && <p>Discount price: ${discountPrice}</p>;
+
+            return (
+                // In the lesson 2. simon told us we can set the width and height by using 
+                // inline styles. but in real projects. it's better to use CSS instead.
+                // but for now. i will use the inline to maximize what i learned in this lesson.
+                <div>
+                    <img src={image} alt={name} width="200" height="250" />
+                    <p>{name}</p>
+                    {price}
+                    {discount}
+                    <button>Add to Cart</button>
+                </div>
+            );
+        }
+
+        const container = document.querySelector('.js-container');
+        const root = ReactDOM.createRoot(container);
+        root.render(<App />);
+    </script>
+</body>
+
+</html>
