@@ -23,12 +23,13 @@
             // I save the inner value of the button in a props. in this activity.
             // i should display the changes in the console if everything is works well.
 
+            // I used the traditional way to change the value of count and this is wrong because the value of count is changed but not changed in the components.
             let count = 0;
 
             function handleClick() {
                 count++;
                 clickMessage = "Clicked";
-                console.log(clickMessage);
+                console.log(count);
             }
 
             return (
@@ -38,6 +39,10 @@
 
         // Main Components
         function App() {
+
+            // I can directly put the button in the return statement without creating a
+            // new components. 
+            // In this activity, i did a lot of mistake.
             return (
                 <>
                     <ClickButton clickMessage="Clicked 0 times" />
