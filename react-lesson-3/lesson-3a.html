@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>React Lesson 3a</title>
+</head>
+
+<body>
+    <div class="js-container"></div>
+
+    <!-- I use supersimpledev react to use the same version of react in his course. -->
+    <!-- In real projects. i will use the latest version of real react -->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <!-- Babel will translate our JSX into regular JavaScript -->
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+    <script type="text/babel">
+
+        // Component
+        function ClickButton({ clickMessage }) {
+            // I save the inner value of the button in a props. in this activity.
+            // i should display the changes in the console if everything is works well.
+
+            let count = 0;
+
+            function handleClick() {
+                count++;
+                clickMessage = "Clicked";
+                console.log(clickMessage);
+            }
+
+            return (
+                <button onClick={handleClick}>{clickMessage}</button>
+            );
+        }
+
+        // Main Components
+        function App() {
+            return (
+                <>
+                    <ClickButton clickMessage="Clicked 0 times" />
+                </>
+            );
+        }
+
+        const container = document.querySelector('.js-container');
+        const root = ReactDOM.createRoot(container);
+
+        root.render(<App />);
+    </script>
+</body>
+
+</html>
