@@ -36,12 +36,10 @@
                         id: crypto.randomUUID()
                     }
                 ];
-
                 setChatMessages(newChatMessages);
 
                 // Bot response
                 const response = Chatbot.getResponse(inputText);
-
                 setChatMessages([
                     ...newChatMessages, {
                         message: response,
@@ -53,6 +51,12 @@
                 setInputText('');
             }
 
+            function handleSendButton(event) {
+                if (event.key === 'Enter') {
+                    sendMessage();
+                }
+            }
+
             return (
                 <>
                     <input
@@ -60,6 +64,7 @@
                         size="30"
                         value={inputText}
                         onChange={saveInputText}
+                        onKeyDown={handleSendButton}
                     />
                     <button onClick={sendMessage}>Send</button>
                 </>
