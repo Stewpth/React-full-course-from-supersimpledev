@@ -30,23 +30,27 @@
 
             async function sendMessage() {
                 const newChatMessages = [
-                    ...chatMessages, {
-                        message: inputText,
-                        sender: 'user',
-                        id: crypto.randomUUID()
-                    }
+                    ...chatMessages,
+                    { message: inputText, sender: 'user', id: crypto.randomUUID() },
+                    { message: 'loading...', sender: 'robot', id: 'loadingId' }
                 ];
                 setChatMessages(newChatMessages);
 
                 // Bot response
                 const response = await Chatbot.getResponseAsync(inputText);
-                setChatMessages([
-                    ...newChatMessages, {
-                        message: response,
-                        sender: 'robot',
-                        id: crypto.randomUUID()
-                    }
-                ]);
+
+                // After received the response. need to change the last index of the array
+                // and rerender again by setting the state again (setChatMessages)
+                newChatMessages[newChatMessages.length - 1] = {
+                    message: response,
+                    sender: 'robot',
+                    id: crypto.randomUUID()
+                }
+
+                // we need spread operator to copy the value of newChatMessages and
+                // paste the value to the new created array.
+                setChatMessages([...newChatMessages]);
+                // Sorry for my grammar. I'm weak at english
 
                 setInputText('');
             }
