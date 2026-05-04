@@ -23,6 +23,7 @@
 
         function ChatInput({ chatMessages, setChatMessages }) {
             const [inputText, setInputText] = React.useState('');
+            const [isLoading, setIsLoading] = React.useState(false);
 
             function saveInputText(event) {
                 setInputText(event.target.value);
@@ -35,6 +36,11 @@
                     { message: 'loading...', sender: 'robot', id: 'loadingId' }
                 ];
                 setChatMessages(newChatMessages);
+                // Instead using if-statement. we set it to true first because this function is Async.
+                setIsLoading(true);
+
+                // After the user sent a message. we can remove now the value of an input
+                setInputText('');
 
                 // Bot response
                 const response = await Chatbot.getResponseAsync(inputText);
@@ -52,7 +58,8 @@
                 setChatMessages([...newChatMessages]);
                 // Sorry for my grammar. I'm weak at english
 
-                setInputText('');
+                // after everything is done. set it again into false.
+                setIsLoading(false);
             }
 
             function handleSendButton(event) {
@@ -65,14 +72,22 @@
 
             return (
                 <>
-                    <input
-                        placeholder="Send a message to a Chatbot"
-                        size="30"
-                        value={inputText}
-                        onChange={saveInputText}
-                        onKeyDown={handleSendButton}
-                    />
-                    <button onClick={sendMessage}>Send</button>
+                    {isLoading ?
+                        <input
+                            placeholder="Bot is thinking."
+                            size="30"
+                            value={inputText}
+                            disabled={true}
+                        /> :
+                        <input
+                            placeholder="Send a message to a Chatbot"
+                            size="30"
+                            value={inputText}
+                            onChange={saveInputText}
+                            onKeyDown={handleSendButton}
+                        />
+                    }
+                    {isLoading ? <button>Wait</button> : <button onClick={sendMessage}>Send</button>}
                 </>
             );
         }
