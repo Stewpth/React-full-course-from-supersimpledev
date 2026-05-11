@@ -69,6 +69,11 @@
             width: 45px;
         }
 
+        .loading-message {
+            height: 35px;
+            margin: -15px;
+        }
+
         .chat-messages-container {
             flex-grow: 1;
             margin-top: 20px;
@@ -112,7 +117,7 @@
                 const newChatMessages = [
                     ...chatMessages,
                     { message: inputText, sender: 'user', id: crypto.randomUUID() },
-                    { message: 'loading...', sender: 'robot', id: 'loadingId' }
+                    { message: <BotLoadingMessage />, sender: 'robot', id: 'loadingId' }
                 ];
                 setChatMessages(newChatMessages);
                 // Instead using if-statement. we set it to true first because this function is Async.
@@ -176,6 +181,10 @@
                     }
                 </div>
             );
+        }
+
+        function BotLoadingMessage() {
+            return <img src="loading-spinner.gif" className="loading-message" />
         }
 
         function ChatMessages({ chatMessages, setChatMessages }) {
