@@ -2,7 +2,29 @@
 <html>
 
 <head>
-    <title>React Lesson 4h</title>
+    <title>React Lesson 4i</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            margin: 0;
+        }
+
+        .count-button-container {
+            display: flex;
+            height: 100vh;
+            align-items: center;
+        }
+
+        .action-button {
+            padding: 10px 15px;
+            color: white;
+            background-color: rgb(25, 135, 84);
+            border: none;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -48,6 +70,8 @@
             let autoClickInterval;
 
             // I think it's optional for this exercise to stop the auto clicking so i will not do it.
+
+            // in the previous lesson. i did a mistake which cause an error to auto click button
             function autoClick() {
                 setInterval(() => {
                     buttonElem.current.click();
@@ -55,15 +79,15 @@
             }
 
             return (
-                <>
+                <div className="count-button-container">
                     <button
                         onClick={addCount}
-                        className="count-button"
+                        className="action-button"
                         ref={buttonElem}
                     >{clickMessage}</button>
-                    <button onClick={resetCount}>Reset</button>
-                    <button onClick={autoClick}>Auto Click</button>
-                </>
+                    <button onClick={resetCount} className="action-button">Reset</button>
+                    <button onClick={autoClick} className="action-button">Auto Click</button>
+                </div>
             );
         }
 
