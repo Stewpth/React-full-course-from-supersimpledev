@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>React Lesson 4d</title>
+    <style>
+        h4 {
+            font-family: Arial, sans-serif;
+            font-weight: 500;
+        }
+
+        .email-input,
+        .password-input {
+            padding: 8px 13px;
+            border: 1px solid rgb(0, 0, 0);
+            border-radius: 4px;
+            margin-bottom: 8px;
+            margin-right: 10px;
+        }
+
+        .action-button {
+            padding: 8px 13px;
+
+            background-color: rgb(0, 123, 255);
+            color: white;
+
+            margin-top: 10px;
+            margin-right: 5px;
+
+            border: none;
+            border-radius: 4px;
+
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="js-container"></div>
+
+    <!-- I use supersimpledev react to use the same version of react in his course. -->
+    <!-- In real projects. i will use the latest version of real react -->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <!-- Babel will translate our JSX into regular JavaScript -->
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+        function App() {
+            return (
+                <>
+                    <h4>Hello, Welcome to my website</h4>
+                    <LoginForm />
+                </>
+            );
+        }
+
+        function EmailInput() {
+            return (
+                <div>
+                    <input
+                        type="text"
+                        placeholder="Email"
+                        className="email-input"
+                    />
+                </div>
+            );
+        }
+
+        function PasswordInput() {
+            const [showPassword, setShowPassword] = React.useState(false);
+
+            function toggleShowPassword() {
+                setShowPassword(!showPassword);
+            }
+
+            return (
+                <div>
+                    <input
+                        type={showPassword ? "text" : "password"} placeholder="Password"
+                        className="password-input"
+                    />
+                    <button onClick={toggleShowPassword}>show</button>
+                </div>
+            );
+        }
+
+        function LoginForm() {
+            return (
+                <>
+                    <EmailInput />
+                    <PasswordInput />
+                    <button className="action-button">Login</button>
+                    <button className="action-button">Sign up</button>
+                </>
+            );
+        }
+
+        const container = document.querySelector('.js-container');
+        const root = ReactDOM.createRoot(container);
+        root.render(<App />);
+    </script>
+</body>
+
+</html>
