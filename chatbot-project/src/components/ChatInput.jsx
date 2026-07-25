@@ -80,9 +80,19 @@ export default function ChatInput({ chatMessages, setChatMessages }) {
       {isLoading ? (
         <button className="send-button">Wait</button>
       ) : (
-        <button onClick={sendMessage} className="send-button">
-          Send
-        </button>
+        <>
+          <button onClick={sendMessage} className="send-button">
+            Send
+          </button>
+          <button
+            className="clear-button"
+            onClick={() => {
+              setChatMessages([]);
+            }}
+          >
+            Clear
+          </button>
+        </>
       )}
     </div>
   );
