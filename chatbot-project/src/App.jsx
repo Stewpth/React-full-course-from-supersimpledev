@@ -8,7 +8,9 @@ import EmptyMessageGreet from "./components/EmptyMessageGreet";
 import "./App.css";
 
 function App() {
-  const [chatMessages, setChatMessages] = useState([]);
+  const [chatMessages, setChatMessages] = useState(
+    JSON.parse(localStorage.getItem("messages")) || [],
+  );
 
   // Chatbot.addResponses adds a response to the chatbot.
   // Ex: you message "greet" on the page, chatbot will response "hello".
@@ -23,6 +25,10 @@ function App() {
       },
     });
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("messages", JSON.stringify(chatMessages));
+  }, [chatMessages]);
 
   return (
     <div className="app-container">
