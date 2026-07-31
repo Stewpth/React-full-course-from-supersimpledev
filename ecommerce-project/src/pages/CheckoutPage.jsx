@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 
 import "./checkout-header.css";
-import "./Checkout.css";
+import "./CheckoutPage.css";
 
 export default function Checkout() {
   return (

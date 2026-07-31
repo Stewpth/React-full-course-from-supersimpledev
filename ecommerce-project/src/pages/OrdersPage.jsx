@@ -1,6 +1,6 @@
 import Header from "../components/Header";
 
-import "./Orders.css";
+import "./OrdersPage.css";
 
 export default function Orders() {
   return (

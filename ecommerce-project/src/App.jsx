@@ -1,16 +1,16 @@
 import { Routes, Route } from "react-router";
 
-import Homepage from "./pages/Homepage";
-import Checkout from "./pages/Checkout";
-import Orders from "./pages/Orders";
+import Homepage from "./pages/HomePage";
+import CheckoutPage from "./pages/CheckoutPage";
+import OrdersPage from "./pages/OrdersPage";
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="checkout" element={<Checkout />} />
-        <Route path="orders" element={<Orders />} />
+        <Route path="checkout" element={<CheckoutPage />} />
+        <Route path="orders" element={<OrdersPage />} />
         <Route path="tracking" element={<div>Tracking</div>} />
       </Routes>
     </>
