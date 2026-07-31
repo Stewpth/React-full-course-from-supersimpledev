@@ -5,6 +5,9 @@ import "./OrdersPage.css";
 export default function Orders() {
   return (
     <>
+      <title>Orders</title>
+      <link rel="icon" type="image/svg+xml" href="orders-favicon.png" />
+
       <Header />
 
       <div class="orders-page">
