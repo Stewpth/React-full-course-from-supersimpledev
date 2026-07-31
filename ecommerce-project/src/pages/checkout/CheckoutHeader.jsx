@@ -1,4 +1,8 @@
 import { Link } from "react-router";
+import Logo from "../../assets/images/logo.png";
+import MobileLogo from "../../assets/images/mobile-logo.png";
+import CheckoutLockLogo from "../../assets/images/icons/checkout-lock-icon.png";
+
 import "./CheckoutHeader.css";
 
 // I already change the <a> element into link so i leave the comment instead.
@@ -9,8 +13,8 @@ export default function CheckoutHeader() {
       <div className="header-content">
         <div className="checkout-header-left-section">
           <Link to="/">
-            <img className="logo" src="images/logo.png" />
-            <img className="mobile-logo" src="images/mobile-logo.png" />
+            <img className="logo" src={Logo} />
+            <img className="mobile-logo" src={MobileLogo} />
           </Link>
         </div>
 
@@ -23,7 +27,7 @@ export default function CheckoutHeader() {
         </div>
 
         <div className="checkout-header-right-section">
-          <img src="images/icons/checkout-lock-icon.png" />
+          <img src={CheckoutLockLogo} />
         </div>
       </div>
     </div>
