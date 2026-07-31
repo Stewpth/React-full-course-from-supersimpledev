@@ -1,6 +1,8 @@
 import { Link } from "react-router";
 import "./CheckoutHeader.css";
 
+// I already change the <a> element into link so i leave the comment instead.
+// This is for Lesson 6 exercise/activity 6c.
 export default function CheckoutHeader() {
   return (
     <div className="checkout-header">
