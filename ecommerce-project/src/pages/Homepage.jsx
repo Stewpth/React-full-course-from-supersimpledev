@@ -11,11 +11,11 @@ export default function Homepage() {
 
   useEffect(() => {
     // Its better to use axios because you can get the data from a response directly "response.data";
-    axios.get("http://localhost:5110/api/products").then((response) => {
+    axios.get("/api/products").then((response) => {
       setProducts(response.data);
     });
 
-    axios.get("http://localhost:5110/api/cart-items").then((response) => {
+    axios.get("/api/cart-items").then((response) => {
       setCart(response.data);
     });
   }, []);
