@@ -1,8 +1,14 @@
+import axios from "axios";
 import Header from "../components/Header";
 import CheckmarkIcon from "../assets/images/icons/checkmark.png";
 import "./HomePage.css";
 
 export default function Homepage() {
+  // Its better to use axios because you can get the data from a response directly "response.data";
+  axios.get("http://localhost:5110/api/products").then((response) => {
+    console.log(response.data);
+  });
+
   return (
     <>
       <link rel="icon" type="image/svg+xml" href="home-favicon.png" />
