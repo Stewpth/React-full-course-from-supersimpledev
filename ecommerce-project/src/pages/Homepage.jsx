@@ -7,19 +7,23 @@ import "./HomePage.css";
 
 export default function Homepage() {
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     // Its better to use axios because you can get the data from a response directly "response.data";
     axios.get("http://localhost:5110/api/products").then((response) => {
-      console.log(response.data);
       setProducts(response.data);
+    });
+
+    axios.get("http://localhost:5110/api/cart-items").then((response) => {
+      setCart(response.data);
     });
   }, []);
 
   return (
     <>
       <link rel="icon" type="image/svg+xml" href="home-favicon.png" />
-      <Header />
+      <Header cart={cart} />
 
       <div className="home-page">
         <div className="products-grid">
