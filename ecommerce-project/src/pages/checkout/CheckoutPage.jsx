@@ -1,7 +1,7 @@
 import CheckoutHeader from "./CheckoutHeader";
 import "./CheckoutPage.css";
 
-export default function Checkout() {
+export default function CheckoutPage() {
   return (
     <>
       <title>Checkout</title>

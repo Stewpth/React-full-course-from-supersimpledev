@@ -5,18 +5,13 @@ import Header from "../components/Header";
 import CheckmarkIcon from "../assets/images/icons/checkmark.png";
 import "./HomePage.css";
 
-export default function Homepage() {
+export default function Homepage({ cart }) {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     // Its better to use axios because you can get the data from a response directly "response.data";
     axios.get("/api/products").then((response) => {
       setProducts(response.data);
-    });
-
-    axios.get("/api/cart-items").then((response) => {
-      setCart(response.data);
     });
   }, []);
 
