@@ -1,10 +1,45 @@
+import axios from "axios";
+import dayjs from "dayjs";
+import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router";
 import Header from "../components/Header";
 import "./TrackingPage.css";
 
 export default function TrackingPage({ cart }) {
   const { orderId, productId } = useParams();
+  const [order, setOrder] = useState(null);
 
+  // Every orderId change, the useEffect will triggered to make
+  // the track package interactive.
+  useEffect(() => {
+    const fetchOrders = async () => {
+      const response = await axios.get(
+        `/api/orders/${orderId}?expand=products`,
+      );
+      setOrder(response.data);
+    };
+
+    fetchOrders();
+  }, [orderId]);
+
+  if (!order) {
+    return;
+  }
+
+  const trackedProduct = order.products.find((product) => {
+    return product.productId === productId;
+  });
+  const totalDeliveryTimeMs =
+    trackedProduct.estimatedDeliveryTimeMs - order.orderTimeMs;
+  const timePassedMs = dayjs().valueOf() - order.orderTimeMs;
+
+  let deliveryProgress = (timePassedMs / totalDeliveryTimeMs) * 100;
+
+  if (deliveryProgress > 100) {
+    deliveryProgress = 100;
+  }
+
+  console.log(trackedProduct);
   return (
     <>
       <title>Tracking</title>
@@ -18,18 +53,25 @@ export default function TrackingPage({ cart }) {
             View all orders
           </Link>
 
-          <div className="delivery-date">Arriving on Monday, June 13</div>
-
-          <div className="product-info">
-            Black and Gray Athletic Cotton Socks - 6 Pairs
+          <div className="delivery-date">
+            {`${
+              deliveryProgress >= 100
+                ? `Delivered on ${dayjs(
+                    trackedProduct.estimatedDeliveryTimeMs,
+                  ).format("dddd, MMMM D")}`
+                : `Arriving on ${dayjs(
+                    trackedProduct.estimatedDeliveryTimeMs,
+                  ).format("dddd, MMMM D")}`
+            }`}
           </div>
 
-          <div className="product-info">Quantity: 1</div>
+          <div className="product-info">{trackedProduct.product.name}</div>
 
-          <img
-            className="product-image"
-            src="images/products/athletic-cotton-socks-6-pairs.jpg"
-          />
+          <div className="product-info">
+            Quantity: {trackedProduct.quantity}
+          </div>
+
+          <img className="product-image" src={trackedProduct.product.image} />
 
           <div className="progress-labels-container">
             <div className="progress-label">Preparing</div>
@@ -38,7 +80,10 @@ export default function TrackingPage({ cart }) {
           </div>
 
           <div className="progress-bar-container">
-            <div className="progress-bar"></div>
+            <div
+              className="progress-bar"
+              style={{ width: `${deliveryProgress}%` }}
+            ></div>
           </div>
         </div>
       </div>
