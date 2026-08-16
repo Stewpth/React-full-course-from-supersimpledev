@@ -8,10 +8,13 @@ export default function Homepage({ cart }) {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    // Its better to use axios because you can get the data from a response directly "response.data";
-    axios.get("/api/products").then((response) => {
+    const fetchProductsData = async () => {
+      // Its better to use axios because you can get the data from a response directly "response.data";
+      const response = axios.get("/api/products");
       setProducts(response.data);
-    });
+    };
+
+    fetchProductsData();
   }, []);
 
   return (
