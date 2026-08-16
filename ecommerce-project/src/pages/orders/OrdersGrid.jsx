@@ -9,10 +9,12 @@ export default function OrdersGrid({ orders }) {
   return (
     <div className="orders-grid">
       {orders.map((order) => {
+        console.log(order.id);
+
         return (
           <div key={order.id} className="order-container">
             <OrderHeader order={order} />
-            <OrderDetailsGrid order={order} />
+            <OrderDetailsGrid order={order} orderId={order.id} />
           </div>
         );
       })}
