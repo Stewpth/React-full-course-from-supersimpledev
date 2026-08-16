@@ -3,7 +3,7 @@ import axios from "axios";
 import { Routes, Route } from "react-router";
 import { useState, useEffect } from "react";
 
-import Homepage from "./pages/HomePage";
+import Homepage from "./pages/Home/Homepage";
 import CheckoutPage from "./pages/checkout/CheckoutPage";
 import OrdersPage from "./pages/OrdersPage";
 import TrackingPage from "./pages/TrackingPage";
