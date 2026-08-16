@@ -6,6 +6,9 @@ import "./PageNotFound.css";
 export default function PageNotFound({ cart }) {
   // In exercise 7i, i need to pass the cart to this component to avoid the
   // error of undefined cart in the Header component.
+
+  // I don't expect the 7o is adding the cart to the props of the PageNotFound.
+  // i already did that so i will add comment instead.
   return (
     <>
       <title>404 Page not found</title>

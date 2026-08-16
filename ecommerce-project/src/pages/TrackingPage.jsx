@@ -39,7 +39,9 @@ export default function TrackingPage({ cart }) {
     deliveryProgress = 100;
   }
 
-  console.log(trackedProduct);
+  const isPreparing = deliveryProgress < 33;
+  const isShipped = deliveryProgress >= 33 && deliveryProgress < 100;
+  const isDelivered = deliveryProgress >= 100;
   return (
     <>
       <title>Tracking</title>
@@ -74,9 +76,21 @@ export default function TrackingPage({ cart }) {
           <img className="product-image" src={trackedProduct.product.image} />
 
           <div className="progress-labels-container">
-            <div className="progress-label">Preparing</div>
-            <div className="progress-label current-status">Shipped</div>
-            <div className="progress-label">Delivered</div>
+            <div
+              className={`progress-label ${isPreparing ? "current-status" : ""}`}
+            >
+              Preparing
+            </div>
+            <div
+              className={`progress-label ${isShipped ? "current-status" : ""}`}
+            >
+              Shipped
+            </div>
+            <div
+              className={`progress-label ${isDelivered ? "current-status" : ""}`}
+            >
+              Delivered
+            </div>
           </div>
 
           <div className="progress-bar-container">
