@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 
 import Homepage from "./pages/Home/Homepage";
 import CheckoutPage from "./pages/checkout/CheckoutPage";
-import OrdersPage from "./pages/OrdersPage";
+import OrdersPage from "./pages/orders/OrdersPage";
 import TrackingPage from "./pages/TrackingPage";
 import PageNotFound from "./pages/PageNotFound";
 
