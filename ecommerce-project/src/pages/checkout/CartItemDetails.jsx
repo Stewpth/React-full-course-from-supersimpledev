@@ -1,10 +1,22 @@
 import axios from "axios";
+import { useState } from "react";
 import { formatMoney } from "../../utils/money";
 
 export default function CartItemDetails({ cartItem, loadCart }) {
+  const [showUpdateQuantity, setShowUpdateQuantity] = useState(false);
+  const [quantity, setQuantity] = useState(cartItem.quantity);
+
   const deleteCartItem = async () => {
     await axios.delete(`/api/cart-items/${cartItem.productId}`);
     await loadCart();
+  };
+
+  const updateCartItem = async () => {
+    await axios.put(`/api/cart-items/${cartItem.productId}`, {
+      quantity,
+    });
+    await loadCart();
+    setShowUpdateQuantity(false);
   };
 
   return (
@@ -19,9 +31,51 @@ export default function CartItemDetails({ cartItem, loadCart }) {
         <div className="product-quantity">
           <span>
             Quantity:{" "}
-            <span className="quantity-label">{cartItem.quantity}</span>
+            {showUpdateQuantity && (
+              <input
+                type="text"
+                className="quantity-input"
+                value={quantity}
+                onChange={(event) => setQuantity(Number(event.target.value))}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    updateCartItem();
+                  }
+                  if (event.key === "Escape") {
+                    setShowUpdateQuantity(false);
+                  }
+                }}
+              />
+            )}
+            {!showUpdateQuantity && (
+              <span className="quantity-label">{cartItem.quantity}</span>
+            )}
           </span>
-          <span className="update-quantity-link link-primary">Update</span>
+          <span
+            className="update-quantity-link link-primary"
+            onClick={() => {
+              if (!showUpdateQuantity) {
+                setShowUpdateQuantity(true);
+              } else {
+                updateCartItem();
+              }
+            }}
+          >
+            Update
+          </span>
+          {showUpdateQuantity && (
+            // This element is just the feature i added.
+            // I think it's better to have this element for manual.
+            <span
+              className="update-quantity-link link-primary"
+              onClick={() => {
+                setShowUpdateQuantity(false);
+              }}
+            >
+              Cancel
+            </span>
+          )}
+
           <span
             className="delete-quantity-link link-primary"
             onClick={deleteCartItem}
