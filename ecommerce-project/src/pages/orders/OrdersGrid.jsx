@@ -5,16 +5,18 @@ import OrderDetailsGrid from "./ordersgrid/OrderDetailsGrid";
 import OrderHeader from "./ordersgrid/OrderHeader";
 import BuyAgainIcon from "../../assets/images/icons/buy-again.png";
 
-export default function OrdersGrid({ orders }) {
+export default function OrdersGrid({ orders, loadCart }) {
   return (
     <div className="orders-grid">
       {orders.map((order) => {
-        console.log(order.id);
-
         return (
           <div key={order.id} className="order-container">
             <OrderHeader order={order} />
-            <OrderDetailsGrid order={order} orderId={order.id} />
+            <OrderDetailsGrid
+              order={order}
+              orderId={order.id}
+              loadCart={loadCart}
+            />
           </div>
         );
       })}
