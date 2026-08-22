@@ -16,8 +16,8 @@ export default function CheckoutPage({ cart, loadCart }) {
       );
       setDeliveryOptions(response.data);
 
-      response = await axios.get("/api/payment-summary");
-      setPaymentSummary(response.data);
+      // response = await axios.get("/api/payment-summary");
+      // setPaymentSummary(response.data);
     };
 
     fetchCheckoutData();
@@ -39,7 +39,12 @@ export default function CheckoutPage({ cart, loadCart }) {
             loadCart={loadCart}
           />
 
-          <PaymentSummary paymentSummary={paymentSummary} loadCart={loadCart} />
+          <PaymentSummary
+            paymentSummary={paymentSummary}
+            setPaymentSummary={setPaymentSummary}
+            loadCart={loadCart}
+            cart={cart}
+          />
         </div>
       </div>
     </>
