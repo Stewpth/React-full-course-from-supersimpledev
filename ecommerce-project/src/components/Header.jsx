@@ -1,4 +1,5 @@
-import { NavLink } from "react-router";
+import { useState } from "react";
+import { NavLink, useNavigate } from "react-router";
 import { quantityCounter } from "../utils/count";
 
 import LogoWhite from "../assets/images/logo-white.png";
@@ -8,20 +9,49 @@ import CartIcon from "../assets/images/icons/cart-icon.png";
 import "./Header.css";
 
 export default function Header({ cart }) {
+  const [searchText, setSearchText] = useState("");
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="header">
         <div className="left-section">
-          <NavLink to="/" className="header-link">
+          <NavLink
+            to="/"
+            className="header-link"
+            onClick={() => {
+              // Reset the input after clicking the home button
+              setSearchText("");
+            }}
+          >
             <img className="logo" src={LogoWhite} />
             <img className="mobile-logo" src={MobileLogoWhite} />
           </NavLink>
         </div>
 
         <div className="middle-section">
-          <input className="search-bar" type="text" placeholder="Search" />
+          <input
+            className="search-bar"
+            type="text"
+            placeholder="Search"
+            value={searchText}
+            onChange={(event) => {
+              setSearchText(event.target.value);
+            }}
+            onKeyDown={(event) => {
+              if (event.key === "Enter") {
+                navigate(`/?search=${searchText}`);
+              }
+            }}
+          />
 
-          <button className="search-button">
+          <button
+            className="search-button"
+            onClick={() => {
+              // console.log(searchText);
+              navigate(`/?search=${searchText}`);
+            }}
+          >
             <img className="search-icon" src={SearchIcon} />
           </button>
         </div>
