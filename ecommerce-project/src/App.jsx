@@ -21,6 +21,15 @@ function App() {
     loadCart();
   }, []);
 
+  // axios can be used in the browser console to test the API endpoints
+  // to access axios in the browser console, just add the code below.
+
+  // in lesson 8c, simon wants us to test the axios from the console
+  // then call this api: axios.post("/api/reset").
+
+  // axios.post("/api/reset") will back the database to default values.
+  window.axios = axios;
+
   return (
     <>
       <Routes>
