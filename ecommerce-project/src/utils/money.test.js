@@ -13,4 +13,9 @@ describe("formatMoney", () => {
   it("format money 0 cents as $0.00", () => {
     expect(formatMoney(0)).toBe("$0.00");
   });
+
+  it("checks working with negative numbers", () => {
+    expect(formatMoney(-100)).toBe("-$1.00");
+    expect(formatMoney(-999)).toBe("-$9.99");
+  });
 });
