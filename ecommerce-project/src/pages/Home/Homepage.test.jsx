@@ -8,10 +8,12 @@ import Homepage from "./Homepage";
 vi.mock("axios");
 
 describe("Homepage component", () => {
+  let user;
   let loadCart;
 
   beforeEach(() => {
     loadCart = vi.fn();
+    user = userEvent.setup();
 
     axios.get.mockImplementation(async (urlPath) => {
       if (urlPath === "/api/products") {
@@ -76,25 +78,37 @@ describe("Homepage component", () => {
 
     const productContainers = await screen.findAllByTestId("product-container");
 
-    const firstProduct = within(productContainers[0]).getByTestId(
-      "add-to-cart-button",
-    );
-    await userEvent.click(firstProduct);
+    // by this function, we can test more products without doing code duplications.
+    // i created this function because its so hard to read when testing multiple products
+    // and it creates more variables.
 
-    const secondProduct = within(productContainers[1]).getByTestId(
-      "add-to-cart-button",
-    );
+    // this function is not included in the activity 9h(lesson 9h). it's just a helper function.
+    async function handleAddToCart(productIndex, quantityString) {
+      const productContainer = productContainers[productIndex];
 
-    await userEvent.click(secondProduct);
+      const quantityContainer = within(productContainer).getByTestId(
+        "product-quantity-selector",
+      );
+
+      await user.selectOptions(quantityContainer, quantityString);
+
+      const productButton =
+        within(productContainer).getByTestId("add-to-cart-button");
+
+      await user.click(productButton);
+    }
+
+    await handleAddToCart(0, "2");
+    await handleAddToCart(1, "3");
 
     expect(axios.post).toHaveBeenNthCalledWith(1, "/api/cart-items", {
       productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-      quantity: 1,
+      quantity: 2,
     });
 
     expect(axios.post).toHaveBeenNthCalledWith(2, "/api/cart-items", {
       productId: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
-      quantity: 1,
+      quantity: 3,
     });
 
     expect(loadCart).toHaveBeenCalledTimes(2);
