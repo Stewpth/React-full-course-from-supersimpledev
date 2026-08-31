@@ -73,7 +73,7 @@ describe("PaymentSummary Component", () => {
     await testRow("payment-total-cost", "Order total:", "$130.04");
   });
 
-  it("place an order correctly", async () => {
+  it("places an order correctly", async () => {
     function TestComponent() {
       const [paymentSummary, setPaymentSummary] = useState(null);
 
@@ -106,6 +106,9 @@ describe("PaymentSummary Component", () => {
     await user.click(placeOrderButton);
     const urlPath = await screen.findByTestId("url-path");
 
+    // checks that it called the correct API
+    expect(axios.post).toHaveBeenCalledWith("/api/orders");
+    expect(loadCart).toHaveBeenCalledTimes(1);
     expect(urlPath).toHaveTextContent("/orders");
   });
 });
