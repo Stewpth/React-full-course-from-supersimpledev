@@ -1,17 +1,20 @@
 import { it, expect, describe, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router";
-import axios from "axios";
+import { MemoryRouter, useLocation } from "react-router";
 import { useState } from "react";
+import userEvent from "@testing-library/user-event";
+import axios from "axios";
 import PaymentSummary from "./PaymentSummary";
 
 vi.mock("axios");
 
 describe("PaymentSummary Component", () => {
   let loadCart;
+  let user;
 
   beforeEach(() => {
     loadCart = vi.fn();
+    user = userEvent.setup();
 
     axios.get.mockImplementation(async (urlPath) => {
       if (urlPath === "/api/payment-summary") {
@@ -68,5 +71,41 @@ describe("PaymentSummary Component", () => {
     await testRow("payment-total-before-tax", "Total before tax:", "$118.22");
     await testRow("payment-estimated-tax", "Estimated tax (10%):", "$11.82");
     await testRow("payment-total-cost", "Order total:", "$130.04");
+  });
+
+  it("place an order correctly", async () => {
+    function TestComponent() {
+      const [paymentSummary, setPaymentSummary] = useState(null);
+
+      return (
+        <>
+          <PaymentSummary
+            paymentSummary={paymentSummary}
+            setPaymentSummary={setPaymentSummary}
+            loadCart={loadCart}
+            cart={[]}
+          />
+          <Location />
+        </>
+      );
+    }
+
+    function Location() {
+      const location = useLocation();
+
+      return <div data-testid="url-path">{location.pathname}</div>;
+    }
+
+    render(
+      <MemoryRouter>
+        <TestComponent />
+      </MemoryRouter>,
+    );
+
+    const placeOrderButton = await screen.findByTestId("place-order-button");
+    await user.click(placeOrderButton);
+    const urlPath = await screen.findByTestId("url-path");
+
+    expect(urlPath).toHaveTextContent("/orders");
   });
 });
