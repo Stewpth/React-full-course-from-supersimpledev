@@ -21,7 +21,11 @@ export default function CartItemDetails({ cartItem, loadCart }) {
 
   return (
     <>
-      <img className="product-image" src={cartItem.product.image} />
+      <img
+        className="product-image"
+        src={cartItem.product.image}
+        data-testid="product-image"
+      />
 
       <div className="cart-item-details">
         <div className="product-name">{cartItem.product.name}</div>
@@ -35,6 +39,7 @@ export default function CartItemDetails({ cartItem, loadCart }) {
               <input
                 type="text"
                 className="quantity-input"
+                data-testid="quantity-input"
                 value={quantity}
                 onChange={(event) => setQuantity(Number(event.target.value))}
                 onKeyDown={(event) => {
@@ -53,6 +58,7 @@ export default function CartItemDetails({ cartItem, loadCart }) {
           </span>
           <span
             className="update-quantity-link link-primary"
+            data-testid="update-quantity-link"
             onClick={() => {
               if (!showUpdateQuantity) {
                 setShowUpdateQuantity(true);
@@ -78,6 +84,7 @@ export default function CartItemDetails({ cartItem, loadCart }) {
 
           <span
             className="delete-quantity-link link-primary"
+            data-testid="delete-cart-item-link"
             onClick={deleteCartItem}
           >
             Delete

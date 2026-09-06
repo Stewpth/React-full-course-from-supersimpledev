@@ -14,7 +14,11 @@ export default function OrderSummary({ deliveryOptions, cart, loadCart }) {
           );
 
           return (
-            <div key={cartItem.productId} className="cart-item-container">
+            <div
+              key={cartItem.productId}
+              className="cart-item-container"
+              data-testid="cart-item-container"
+            >
               <DeliveryDate selectedDeliveryOptions={selectedDeliveryOptions} />
 
               <div className="cart-item-details-grid">
