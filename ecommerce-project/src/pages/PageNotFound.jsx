@@ -23,7 +23,11 @@ export default function PageNotFound({ cart }) {
         <h4 className="page-not-found-msg">
           Sorry you reach the page does not belongs in this web
         </h4>
-        <Link className="back-to-homepage-link" to="/">
+        <Link
+          className="back-to-homepage-link"
+          to="/"
+          data-testid="go-back-to-homepage-link"
+        >
           Go back to homepage
         </Link>
       </div>
