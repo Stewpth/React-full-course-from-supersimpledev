@@ -92,7 +92,6 @@ describe("OrderSummary component", () => {
       "src",
       "images/products/athletic-cotton-socks-6-pairs.jpg",
     );
-
     expect(
       within(cartItemContainers[0]).getByText(
         "Black and Gray Athletic Cotton Socks - 6 Pairs",
@@ -103,11 +102,19 @@ describe("OrderSummary component", () => {
     ).toBeInTheDocument();
     expect(within(cartItemContainers[0]).getByText("2")).toBeInTheDocument();
 
+    let deliveryOptionInputs = within(cartItemContainers[0]).getAllByTestId(
+      "delivery-option-input",
+    );
+    expect(deliveryOptionInputs.length).toBe(3);
+    expect(deliveryOptionInputs[0].checked).toBe(true);
+    expect(deliveryOptionInputs[1].checked).toBe(false);
+    expect(deliveryOptionInputs[2].checked).toBe(false);
+
     expect(
-      within(cartItemContainers[0]).getByTestId("product-image"),
+      within(cartItemContainers[1]).getByTestId("product-image"),
     ).toHaveAttribute(
       "src",
-      "images/products/athletic-cotton-socks-6-pairs.jpg",
+      "images/products/intermediate-composite-basketball.jpg",
     );
     expect(
       within(cartItemContainers[1]).getByText("Intermediate Size Basketball"),
@@ -116,6 +123,14 @@ describe("OrderSummary component", () => {
       within(cartItemContainers[1]).getByText("$20.95"),
     ).toBeInTheDocument();
     expect(within(cartItemContainers[1]).getByText("1")).toBeInTheDocument();
+
+    deliveryOptionInputs = within(cartItemContainers[1]).getAllByTestId(
+      "delivery-option-input",
+    );
+    expect(deliveryOptionInputs.length).toBe(3);
+    expect(deliveryOptionInputs[0].checked).toBe(false);
+    expect(deliveryOptionInputs[1].checked).toBe(true);
+    expect(deliveryOptionInputs[2].checked).toBe(false);
   });
 
   it("delete the specific product in the cart", async () => {

@@ -40,6 +40,7 @@ export default function DeliveryOptions({
               onChange={() => {}}
               className="delivery-option-input"
               name={`delivery-option-${cartItem.productId}`}
+              data-testid="delivery-option-input"
             />
             <div>
               <div className="delivery-option-date">
