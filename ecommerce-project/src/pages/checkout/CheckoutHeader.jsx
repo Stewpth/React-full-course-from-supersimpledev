@@ -11,16 +11,27 @@ import "./CheckoutHeader.css";
 // This is for Lesson 6 exercise/activity 6c.
 export default function CheckoutHeader({ cart }) {
   return (
-    <div className="checkout-header">
+    <div className="checkout-header" data-testid="checkout-header">
       <div className="header-content">
         <div className="checkout-header-left-section">
           <Link to="/">
-            <img className="logo" src={Logo} />
-            <img className="mobile-logo" src={MobileLogo} />
+            <img
+              className="logo"
+              src={Logo}
+              data-testid="checkout-ecommerce-logo"
+            />
+            <img
+              className="mobile-logo"
+              src={MobileLogo}
+              data-testid="checkout-ecommerce-logo-mobile"
+            />
           </Link>
         </div>
 
-        <div className="checkout-header-middle-section">
+        <div
+          className="checkout-header-middle-section"
+          data-testid="checkout-header-middle-section"
+        >
           Checkout (
           <Link className="return-to-home-link" to="/">
             {quantityCounter(cart)} items
@@ -29,7 +40,10 @@ export default function CheckoutHeader({ cart }) {
         </div>
 
         <div className="checkout-header-right-section">
-          <img src={CheckoutLockLogo} />
+          <img
+            src={CheckoutLockLogo}
+            data-testid="checkout-header-right-section-img"
+          />
         </div>
       </div>
     </div>
