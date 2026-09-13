@@ -14,7 +14,7 @@ export default function Header({ cart }) {
 
   return (
     <>
-      <div className="header">
+      <div className="header" data-testid="shared-header-container">
         <div className="left-section">
           <NavLink
             to="/"
@@ -24,8 +24,16 @@ export default function Header({ cart }) {
               setSearchText("");
             }}
           >
-            <img className="logo" src={LogoWhite} />
-            <img className="mobile-logo" src={MobileLogoWhite} />
+            <img
+              className="logo"
+              src={LogoWhite}
+              data-testid="shared-header-logo"
+            />
+            <img
+              className="mobile-logo"
+              src={MobileLogoWhite}
+              data-testid="shared-mobile-header-logo"
+            />
           </NavLink>
         </div>
 
@@ -63,7 +71,12 @@ export default function Header({ cart }) {
 
           <NavLink className="cart-link header-link" to="/checkout">
             <img className="cart-icon" src={CartIcon} />
-            <div className="cart-quantity">{quantityCounter(cart)}</div>
+            <div
+              className="cart-quantity"
+              data-testid="shared-header-cart-quantity"
+            >
+              {quantityCounter(cart)}
+            </div>
             <div className="cart-text">Cart</div>
           </NavLink>
         </div>

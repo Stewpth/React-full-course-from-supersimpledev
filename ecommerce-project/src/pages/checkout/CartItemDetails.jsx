@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { formatMoney } from "../../utils/money";
 
+// I would not make the test for this components because this is already tested in OrderSummary
 export default function CartItemDetails({ cartItem, loadCart }) {
   const [showUpdateQuantity, setShowUpdateQuantity] = useState(false);
   const [quantity, setQuantity] = useState(cartItem.quantity);

@@ -4,7 +4,7 @@ import { formatMoney } from "../../../utils/money";
 export default function OrderHeader({ order }) {
   return (
     <>
-      <div className="order-header">
+      <div className="order-header" data-testid="order-header">
         <div className="order-header-left-section">
           <div className="order-date">
             <div className="order-header-label">Order Placed:</div>
