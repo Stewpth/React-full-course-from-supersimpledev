@@ -5,7 +5,12 @@ import UserProfileImage from "../assets/profile-1.jpg";
 
 import "./ChatMessage.css";
 
-export default function ChatMessage({ message, sender }) {
+type ChatMessageProps = {
+  message: string;
+  sender: string;
+};
+
+export default function ChatMessage({ message, sender }: ChatMessageProps) {
   // Im not confident to this time displaying.
   // It display the time immediately after sending an input for chatbot response.
   // I think the time should be displayed after the chatbot response is sent.
