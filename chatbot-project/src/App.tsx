@@ -11,6 +11,7 @@ import "./App.css";
 type ChatMessage = {
   sender: "user" | "bot";
   message: string;
+  id: string;
 };
 
 function App() {
