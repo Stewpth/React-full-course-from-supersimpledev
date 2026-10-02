@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>React Lesson 1f</title>
+</head>
+
+<body>
+    <div class="js-container"></div>
+
+    <!-- I use supersimpledev react to use the same version of react in his course. -->
+    <!-- In real projects. i will use the latest version of real react -->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <!-- Babel will translate our JSX into regular JavaScript -->
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+        const socksPrice = 10;
+        const tshirtPrice = 8;
+
+        const productCost = (socksPrice + (tshirtPrice * 2));
+        const shippingCost = 5;
+        const totalCost = productCost + shippingCost;
+
+        const div = (
+            <div>
+                <p>Product cost: ${productCost}</p>
+                <p>Shipping cost: ${shippingCost}</p>
+                <p>Total cost: ${totalCost}</p>
+
+                <button>Place your order</button>
+            </div>
+        );
+
+        console.log(productCost);
+        const container = document.querySelector('.js-container');
+        ReactDOM.createRoot(container).render(div);
+    </script>
+</body>
+
+</html>
