@@ -8,7 +8,15 @@ import SearchIcon from "../assets/images/icons/search-icon.png";
 import CartIcon from "../assets/images/icons/cart-icon.png";
 import "./Header.css";
 
-export default function Header({ cart }) {
+type HeaderProps = {
+  cart: {
+    productId: string;
+    quantity: number;
+    deliveryOptionId: string;
+  }[];
+}
+
+export default function Header({ cart }: HeaderProps) {
   const [searchText, setSearchText] = useState("");
   const navigate = useNavigate();
 
