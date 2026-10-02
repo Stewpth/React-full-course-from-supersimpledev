@@ -4,6 +4,7 @@ import { Chatbot } from "supersimpledev";
 import ChatInput from "./components/ChatInput";
 import ChatMessages from "./components/ChatMessages";
 import EmptyMessageGreet from "./components/EmptyMessageGreet";
+import WebIcon from "./assets/robot.png";
 
 import "./App.css";
 
@@ -31,17 +32,22 @@ function App() {
   }, [chatMessages]);
 
   return (
-    <div className="app-container">
-      <ChatMessages
-        chatMessages={chatMessages}
-        setChatMessages={setChatMessages}
-      />
-      {chatMessages.length === 0 && <EmptyMessageGreet />}
-      <ChatInput
-        chatMessages={chatMessages}
-        setChatMessages={setChatMessages}
-      />
-    </div>
+    <>
+      <link rel="icon" type="image/svg+xml" href={WebIcon} />
+      <title>Chatbot Project</title>
+
+      <div className="app-container">
+        <ChatMessages
+          chatMessages={chatMessages}
+          setChatMessages={setChatMessages}
+        />
+        {chatMessages.length === 0 && <EmptyMessageGreet />}
+        <ChatInput
+          chatMessages={chatMessages}
+          setChatMessages={setChatMessages}
+        />
+      </div>
+    </>
   );
 }
 
