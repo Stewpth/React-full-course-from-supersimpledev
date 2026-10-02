@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>React Lesson 3d</title>
+</head>
+
+<body>
+    <div class="js-container"></div>
+
+    <!-- I use supersimpledev react to use the same version of react in his course. -->
+    <!-- In real projects. i will use the latest version of real react -->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <!-- Babel will translate our JSX into regular JavaScript -->
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+    <script type="text/babel">
+        // In lesson 3a. something was wrong because my code looks so messy and have a lot
+        // code just to display the changes in the console.
+
+        // I seperate this into function because to keep organized the components
+        function messageCount(count) {
+            // This is the best way for me to implement the proper message for the button.
+            // by using if statement to check the value of count and display the proper message for it.
+            let clickMessage = '';
+
+            if (count === 0) {
+                clickMessage = "Not Clicked";
+            } else if (count === 1) {
+                clickMessage = "Clicked 1 time";
+            } else {
+                clickMessage = `Clicked ${count} times`;
+            }
+
+            return clickMessage;
+        }
+
+        // Components
+        // If i reuse it. we notice that each of these components has different counts.
+        function ClickCountButton() {
+            // First we save the argument in count variables by using deconstructing.
+            const [count, setCount] = React.useState(0);
+
+            const clickMessage = messageCount(count);
+
+            function addCount() {
+                // To change the value of count. we need to use the setCount function. and pass the new value of count in it.
+                setCount(count + 1);
+            }
+
+            return (
+                <button onClick={addCount}>{clickMessage}</button>
+            );
+        }
+
+        // Main Components
+        function App() {
+            return (
+                <>
+                    <ClickCountButton />
+                    <ClickCountButton />
+                </>
+            );
+        }
+
+        const container = document.querySelector('.js-container');
+        const root = ReactDOM.createRoot(container);
+
+        root.render(<App />);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>React Lesson 4a</title>
+    <style>
+        .toggle-button {
+            background-color: rgb(25, 135, 84);
+            color: white;
+            border-radius: 7px;
+            border: none;
+            padding: 9px 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="js-container"></div>
+
+    <!-- I use supersimpledev react to use the same version of react in his course. -->
+    <!-- In real projects. i will use the latest version of real react -->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <!-- Babel will translate our JSX into regular JavaScript -->
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+    <script type="text/babel">
+        function Button() {
+            return (
+                <>
+                    <button className="toggle-button">ON</button>
+                </>
+            );
+        }
+
+        function App() {
+            return (
+                <>
+                    <Button />
+                </>
+            );
+        }
+
+        const container = document.querySelector('.js-container');
+        const root = ReactDOM.createRoot(container);
+        root.render(<App />);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>React Lesson 1a</title>
+</head>
+
+<body>
+    <div class="js-container"></div>
+
+    <!-- I use supersimpledev react to use the same version of react in his course. -->
+    <!-- In real projects. i will use the latest version of real react -->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <!-- Babel will translate our JSX into regular JavaScript -->
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+        const button = <button>Good job!</button>;
+
+        const container = document.querySelector('.js-container');
+        ReactDOM.createRoot(container).render(button);
+    </script>
+</body>
+
+</html>

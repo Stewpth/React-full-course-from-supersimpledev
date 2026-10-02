@@ -1,0 +1,37 @@
+.page-not-found {
+  max-width: 850px;
+  margin-top: 90px;
+  margin-bottom: 100px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  /* margin-left: auto;
+     margin-right auto;
+     Is a trick for centering an element horizontally
+     without needing a container. */
+  margin-left: auto;
+  margin-right: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-not-found-img {
+  max-width: 500px;
+}
+
+.page-not-found-title {
+  color: rgb(8, 79, 45);
+}
+
+.back-to-homepage-link {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: rgb(8, 79, 45);
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 15px;
+}
