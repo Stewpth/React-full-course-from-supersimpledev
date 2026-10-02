@@ -13,6 +13,11 @@ function App() {
     JSON.parse(localStorage.getItem("messages")) || [],
   );
 
+  const title =
+    chatMessages.length === 0
+      ? `Chatbot Project`
+      : `${chatMessages.length} Messages`;
+
   // Chatbot.addResponses adds a response to the chatbot.
   // Ex: you message "greet" on the page, chatbot will response "hello".
   // Chatbot.addResponses can be string or function that returns string
@@ -34,7 +39,7 @@ function App() {
   return (
     <>
       <link rel="icon" type="image/svg+xml" href={WebIcon} />
-      <title>Chatbot Project</title>
+      <title>{title}</title>
 
       <div className="app-container">
         <ChatMessages
